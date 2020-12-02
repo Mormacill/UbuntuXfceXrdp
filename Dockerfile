@@ -10,7 +10,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update && apt-get upgrade -y && apt-get install -y wget nano sudo net-tools apt-utils software-properties-common
 
 #locales
-ENV LANGUAGE=de_DE.UTF-8
+ENV LANGUAGE=en_US.UTF-8
 
 RUN apt-get install -y locales
 RUN echo '${LANGUAGE} UTF-8' >> /etc/locale.gen
