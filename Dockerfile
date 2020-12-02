@@ -41,6 +41,8 @@ COPY xfce4.zip .
 RUN unzip xfce4.zip
 RUN rm xfce4.zip
 
+WORKDIR /root
+
 EXPOSE 3389
 
-ENTRYPOINT rm /var/run/xrdp/xrdp.pid && service xrdp start && service dbus start && /bin/bash
+ENTRYPOINT rm /var/run/xrdp/xrdp.pid & service xrdp start && service dbus start && /bin/bash
