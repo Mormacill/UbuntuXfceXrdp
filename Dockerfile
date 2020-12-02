@@ -29,6 +29,10 @@ RUN apt-get purge -y pulseaudio pavucontrol
 #install necessary software
 RUN apt-get install -y gedit firefox
 
+#disable suspend/hibernate-Buttons
+RUN echo "xfconf-query -c xfce4-session -np '/shutdown/ShowSuspend' -t 'bool' -s 'false'" >> /etc/skel/.bashrc
+RUN echo "xfconf-query -c xfce4-session -np '/shutdown/ShowHibernate' -t 'bool' -s 'false'" >> /etc/skel/.bashrc
+
 EXPOSE 3389
 
 ENTRYPOINT rm /var/run/xrdp/xrdp.pid && service xrdp start && service dbus start && /bin/bash
