@@ -45,4 +45,4 @@ WORKDIR /root
 
 EXPOSE 3389
 
-ENTRYPOINT rm /var/run/xrdp/xrdp.pid & service xrdp start && service dbus start && /bin/bash
+ENTRYPOINT rm /var/run/xrdp/xrdp.pid & sleep 2 && service xrdp start && service dbus start && /bin/bash
