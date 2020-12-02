@@ -31,4 +31,4 @@ RUN apt-get install -y gedit firefox
 
 EXPOSE 3389
 
-ENTRYPOINT service xrdp start && /bin/bash
+ENTRYPOINT service xrdp start && service dbus start && /bin/bash
