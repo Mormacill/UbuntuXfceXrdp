@@ -7,7 +7,7 @@ ENV TZ=Europe/Berlin
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 #install commons
-RUN apt-get update && apt-get upgrade -y && apt-get install -y wget nano sudo net-tools apt-utils software-properties-common
+RUN apt-get update && apt-get upgrade -y && apt-get install -y wget nano sudo net-tools apt-utils software-properties-common zip
 
 #locales
 ENV LANGUAGE=en_US.UTF-8
@@ -32,6 +32,14 @@ RUN apt-get install -y gedit firefox
 #disable suspend/hibernate-Buttons
 RUN echo "xfconf-query -c xfce4-session -np '/shutdown/ShowSuspend' -t 'bool' -s 'false'" >> /etc/skel/.bashrc
 RUN echo "xfconf-query -c xfce4-session -np '/shutdown/ShowHibernate' -t 'bool' -s 'false'" >> /etc/skel/.bashrc
+
+#disable action menu
+WORKDIR /etc/skel
+RUN mkdir .config
+WORKDIR /etc/skel/.config
+COPY xfce4.zip .
+RUN unzip xfce4.zip
+RUN rm xfce4.zip
 
 EXPOSE 3389
 
