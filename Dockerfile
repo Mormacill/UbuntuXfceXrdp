@@ -44,6 +44,10 @@ RUN rm xfce4.zip
 #make thinclient-folder unvisible for user
 RUN sed -i 's#FuseMountName=thinclient_drives#FuseMountName=Public/thinclient_drives#g' /etc/xrdp/sesman.ini
 
+#change first IDs
+RUN sed -i 's/FIRST_UID=1000/FIRST_UID=2000/g' /etc/adduser.conf
+RUN sed -i 's/FIRST_GID=1000/FIRST_GID=2000/g' /etc/adduser.conf
+
 EXPOSE 3389
 
 WORKDIR /root
