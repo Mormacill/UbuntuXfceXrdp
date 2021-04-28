@@ -63,7 +63,14 @@ RUN if [ "$ENABLE_SOUND" = "TRUE" ]; then \
         cd pulseaudio-$PULSE_VER && ./configure && \
         cd ../ && git clone https://github.com/neutrinolabs/pulseaudio-module-xrdp.git && \
         cd pulseaudio-module-xrdp && ./bootstrap && ./configure PULSE_DIR=/root/pulseaudio-$PULSE_VER && make && \
-        sudo make install && ls $(pkg-config --variable=modlibexecdir libpulse) && \
+        sudo make install && \
+        echo "" && \
+        echo "" && \
+        echo "you should see some xrdp modules now:" && \
+        echo "" && \
+        ls $(pkg-config --variable=modlibexecdir libpulse) | grep *-xrdp-* && \
+        echo "" && \
+        echo "" && \
         mv /etc/skel/.xsession /etc/skel/.xsession_b && echo 'pulseaudio -D' > /etc/skel/.xsession && cat /etc/skel/.xsession_b >> /etc/skel/.xsession && rm /etc/skel/.xsession_b && \
         rm -rf /root/pulseaudio*; \
     else apt-get purge -y pulseaudio pavucontrol; fi
