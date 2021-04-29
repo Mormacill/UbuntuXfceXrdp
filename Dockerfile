@@ -68,7 +68,7 @@ RUN if [ "$ENABLE_SOUND" = "TRUE" ]; then \
         echo "" && \
         echo "you should see some xrdp modules now:" && \
         echo "" && \
-        ls $(pkg-config --variable=modlibexecdir libpulse) | grep *-xrdp-* && \
+        ls $(pkg-config --variable=modlibexecdir libpulse) | grep -Eo '.*-xrdp-.*' && \
         echo "" && \
         echo "" && \
         mv /etc/skel/.xsession /etc/skel/.xsession_b && echo 'pulseaudio -D' > /etc/skel/.xsession && cat /etc/skel/.xsession_b >> /etc/skel/.xsession && rm /etc/skel/.xsession_b && \
